@@ -1,2 +1,2 @@
-# blog_post
-Blog Post App using MERN stack 
+# bloglist
+Bloglist App using MERN stack 
