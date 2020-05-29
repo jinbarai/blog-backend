@@ -1,1 +1,5 @@
 /node_modules
+# Local development
+*.env
+*.dev
+.eslintrc.js
