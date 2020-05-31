@@ -4,9 +4,9 @@
   "description": "Blog List app using MERN",
   "main": "bloglist.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
   },
   "repository": {
     "type": "git",
@@ -20,14 +20,21 @@
   "homepage": "https://github.com/jinbarai/blog_post#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "http": "0.0.1-security",
     "mongoose": "^5.9.16"
   },
   "devDependencies": {
     "eslint": "^7.1.0",
     "eslint-plugin-react": "^7.20.0",
-    "nodemon": "^2.0.4"
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.4",
+    "supertest": "^4.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
