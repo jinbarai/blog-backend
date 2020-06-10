@@ -46,35 +46,35 @@ test('a specific blog can be viewed', async () => {
   expect(resultBlog.body).toEqual(blogToView)
 })
 
-// test('a blog list can be deleted', async () => {
-//   const blogsAtStart = await helper.blogsInDb()
-//   const blogsToDelete = blogsAtStart[0]
-//   console.log(blogsToDelete)
+test('a blog list can be deleted', async () => {
+  const blogsAtStart = await helper.blogsInDb()
+  const blogsToDelete = blogsAtStart[0]
+  console.log(blogsToDelete)
 
-//   await api
-//     .delete(`/api/notes/${blogsToDelete.id}`)
-//     .expect(404)
+  await api
+    .delete(`/api/notes/${blogsToDelete.id}`)
+    .expect(404)
 
-//   const blogsAtEnd = await helper.blogsInDb()
+  const blogsAtEnd = await helper.blogsInDb()
 
-//   expect(blogsAtEnd).toHaveLength(
-//     helper.initialBlogs.length - 1
-//   )
+  expect(blogsAtEnd).toHaveLength(
+    helper.initialBlogs.length - 1
+  )
 
-//   expect(blogsAtEnd).toHaveLength(2)
-//   const contents = blogsAtEnd.map(r => r.title)
-//   expect(contents).not.toContain(blogsToDelete.title)
-// })
+  expect(blogsAtEnd).toHaveLength(2)
+  const contents = blogsAtEnd.map(r => r.title)
+  expect(contents).not.toContain(blogsToDelete.title)
+})
 
-// test('adding new blogs', async () => {
-//   const newBlog = helper.newBlog()
-//   const response = await api
-//     .post('api/blogs', newBlog)
-//     .expect(200)
-//   expect (response.body.title==='JIN')
-//   const newBlogs = helper.blogsInDb()
-//   expect (newBlogs.length).toHaveLength(helper.initialBlogs.length + 1)
-// })
+test('adding new blogs', async () => {
+  const newBlo = helper.newBlog()
+  const response = await api
+    .post('api/blogs', newBlo)
+    .expect(200)
+  expect (response.body.title==='JIN')
+  const newBlogs = helper.blogsInDb()
+  expect (newBlogs.length).toHaveLength(helper.initialBlogs.length + 1)
+})
 
 
 describe('when there is one initially one user in db', () => {
@@ -130,8 +130,6 @@ describe('when there is one initially one user in db', () => {
 
   })
 })
-
-
 
 afterAll(() => {
   mongoose.connection.close()

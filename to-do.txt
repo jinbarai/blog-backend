@@ -5,3 +5,5 @@ MongoDB test database URL??
 4.12
 4.10
 test
+bcrypt-hash not a function
+3 tests failed 
