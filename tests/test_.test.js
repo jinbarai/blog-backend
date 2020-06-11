@@ -66,16 +66,6 @@ test('a blog list can be deleted', async () => {
   expect(contents).not.toContain(blogsToDelete.title)
 })
 
-test('adding new blogs', async () => {
-  const newBlo = helper.newBlog()
-  const response = await api
-    .post('api/blogs', newBlo)
-    .expect(200)
-  expect (response.body.title==='JIN')
-  const newBlogs = helper.blogsInDb()
-  expect (newBlogs.length).toHaveLength(helper.initialBlogs.length + 1)
-})
-
 
 describe('when there is one initially one user in db', () => {
   beforeEach(async () => {
@@ -108,6 +98,23 @@ describe('when there is one initially one user in db', () => {
 
   })
 
+  test('adding new blogs', async () => {
+    const newBlo = helper.newBlog()
+    const response = await api
+      .post('/api/blogs', newBlo)
+      .send(newBlo)
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+
+    expect (response.body.title==='JIN')
+    const newBlogs = helper.blogsInDb()
+    expect (newBlogs.length).toHaveLength(helper.initialBlogs.length + 1)
+
+    const contents = newBlogs.map(n => n.title)
+    expect(contents).toContain('JIN')
+  })
+
+
   test('creation fails with proper statuscode and message if username already taken', async () => {
     const usersAtStart = await helper.usersInDb()
 
@@ -123,7 +130,7 @@ describe('when there is one initially one user in db', () => {
       .expect(400)
       .expect('Content-Type', /application\/json/)
 
-    expect(result.body.error).toConsole('`username` to be unique')
+    expect(result.body.error).toContain('`username` to be unique')
 
     const usersAtEnd = await helper.usersInDb()
     expect(usersAtEnd).toHaveLength(usersAtStart.length)

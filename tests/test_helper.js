@@ -32,7 +32,8 @@ const newBlog = () => {
     "title": "JIN",
     "author": "BARAI",
     "url": "WOHO",
-    "likes": 13131
+    "likes": 13131,
+    "user": "5ee0d65ca8e4008ffa26fe42"
   })
 }
 
