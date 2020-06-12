@@ -18,15 +18,16 @@ blogRouter.get('/:id', async (request, response) => {
 
 blogRouter.post('/', async (request, response) => {
   const body = request.body
-
+  console.log(body.userId)
   const user = await User.findById(body.userId)
+  //console.log(user)
 
   const blog = new Blog({
     title: body.title,
     author: body.author,
     url: body.url,
-    likes: body.number,
-    user: user._id
+    likes: body.likes,
+    userId: user._id
   })
 
   const savedBlog = await blog.save()
@@ -42,12 +43,14 @@ blogRouter.delete('/:id', async (request, response) => {
 
 blogRouter.put('/:id', async (request, response) => {
   const body = request.body
+  const user = await User.findById(body.userId)
 
   const blog = {
     title: body.title,
     author: body.author,
     url: body.url,
-    likes: body.likes
+    likes: body.likes,
+    userId: user._id
   }
   await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
     .then(updatedBlog => {

@@ -6,13 +6,15 @@ const initialBlogs = [
     "title": "Wow blog",
     "author": "JIn Barai",
     "url": "test.com",
-    "likes": 5
+    "likes": 5,
+    "userId": "5ee0d65ca8e4008ffa26fe42"
   },
   {
     "title": "Testing",
     "author": "Testing",
     "url": "test.com",
-    "likes": 1
+    "likes": 1,
+    "userId": "5ee0d65ca8e4008ffa26fe42"
   }
 ]
 const nonExistingId = async () => {
@@ -28,13 +30,13 @@ const blogsInDb = async() => {
 }
 
 const newBlog = () => {
-  return Blog({
+  return {
     "title": "JIN",
     "author": "BARAI",
     "url": "WOHO",
     "likes": 13131,
-    "user": "5ee0d65ca8e4008ffa26fe42"
-  })
+    "userId": "5edd43548d3d46861c15d10e"
+  }
 }
 
 const usersInDb = async () => {

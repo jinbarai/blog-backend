@@ -7,9 +7,6 @@ const brcypt = require('bcrypt')
 const User = require('../models/user')
 const api = supertest(app)
 
-// ISS
-
-
 beforeEach(async() => {
   await Blog.deleteMany({})
   console.log('cleared')
