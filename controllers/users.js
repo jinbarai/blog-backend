@@ -7,6 +7,11 @@ usersRouter.post('/', async (request, response) => {
   const saltRounds = 10
   const passwordHash = await bcrypt.hash(body.password, saltRounds)
 
+  if (!body.password || body.password.length < 3) {
+    return response.status(400).send({
+      error: 'password must min length 3'
+    })
+  }
   const user = new User({
     username: body.username,
     name: body.name,
@@ -19,7 +24,9 @@ usersRouter.post('/', async (request, response) => {
 })
 
 usersRouter.get('/', async (request, response) => {
-  const users = await User.find({}).populate('blogs', { title:1, author:1, url:1, likes:1 })
+  const users = await User
+    .find({})
+    .populate('blogs', { title:1, author:1, url:1, likes:1 })
   response.json(users.map(u => u.toJSON()))
 })
 
