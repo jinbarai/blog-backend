@@ -1,2 +1,2 @@
-# bloglist
-Bloglist App using MERN stack 
+# Blog App
+Blog App backend using MongoDB, Node.js and Express
